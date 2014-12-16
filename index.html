@@ -200,7 +200,11 @@ retFunc: (x: Int, y: Int)Int => Int
 * 関数リテラルは、Functionトレイトを利用した記述の糖衣構文(Syntactic Sugar)
 * 協議には、FunctionNを実装したオブジェクトのみが関数(関数型言語の第一級関数の条件をすべて満たす)
 
-関数型言語における第一級関数の定義
+---
+
+## 第一級関数の条件
+***
+
 1. リテラルがある
 1. 実行時に生成できる
 1. 変数に代入することができる
@@ -211,9 +215,58 @@ retFunc: (x: Int, y: Int)Int => Int
 ---
 
 ## 課題
+***
 
 1. String型引数xを取り、"Hello "の後ろにxを連結したのStringを返す関数greetを定義してみましょう
-2. Int型の引数xを取り、Int型の引数yを取って引数x回yを掛け合せる関数を返す関数を定義してみましょう
+1. 1と同じ内容の関数を関数リテラルで作成し、val greet2 に代入してみましょう
+
+---
+
+## 解答例
+***
+
+課題1
+~~~scala
+scala> def greet(x: String): String = "Hello " + x
+greet: (x: String)String
+~~~
+
+課題2
+~~~scala
+scala> val greet2 = (x:String) => "Hello " + x
+greet2: String => String = <function1>
+~~~
+
+---
+
+## 課題
+***
+
+下記の関数greet3を作成してみましょう
+~~~scala
+@param d String型の引数を1個取ってString型を返す関数d
+@param s String型
+@return sを2回連結してdに渡した結果の前に"Good Morning "を連結した文字列
+~~~
+
+greet3関数にgreet関数と"Taro"を渡して実行してみましょう
+
+`"Good Morning Hello TaroTaro"`
+
+を返せば正解です
+
+---
+
+## 解答例
+***
+
+~~~scala
+scala> def greet3(d:(String) => String, s:String) = "Good Morning " + d(s + s)
+greet3: (d: String => String, s: String)String
+
+cala> greet3(greet, "Taro")
+res12: String = Good Morning Hello TaroTaro
+~~~
 
           </script>
         </section>
